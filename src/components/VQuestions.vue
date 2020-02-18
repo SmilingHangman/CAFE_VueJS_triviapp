@@ -50,9 +50,6 @@ export default {
         const answers = [
           ...currentQuestion.incorrect_answers, currentQuestion.correct_answer
         ]
-        // console.log(answers)
-        // console.log(currentQuestion.incorrect_answers)
-        // console.log(currentQuestion.correct_answer)
         return shuffle(answers)
       }
       return []
@@ -66,7 +63,6 @@ export default {
       this.isRequesting = true
       try {
         const { data } = await axios.get('/api.php?amount=10')
-        console.log(data)
         this.questions = data.results
         this.isRequesting = false
       } catch (error) {
@@ -74,20 +70,16 @@ export default {
       }
     },
     onClick (answer) {
-      const userChoice = answer
-      console.log(userChoice)
-      // console.log(this.currentQuestion.incorrect_answers)
       console.log(this.currentQuestion.correct_answer)
-      // console.log(this.currentQuestion)
-      if (userChoice === this.currentQuestion.correct_answer) {
+      if (answer === this.currentQuestion.correct_answer) {
         alert('ok')
         if (this.currentIndex++ + 1 === this.questions.length) {
-          alert('LAIMEJAI NX')
+          alert('WON!')
         }
-        console.log(this.questions.length)
-        //   this.currentIndex++
       } else {
-        alert('TU DURNAS')
+        alert('WRONG!')
+        this.$emit('changeStarted', false)
+        console.log(this.started)
       }
     }
   }

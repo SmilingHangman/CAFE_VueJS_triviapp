@@ -7,14 +7,12 @@
       @click="onClick">
       Start
     </VButton>
-    <VQuestions v-if="started">
+    <VQuestions v-if="started" v-on:changeStarted="updateStarted($event)">
     </VQuestions>
   </div>
 </template>
 
 <script>
-// import axios from '@/packages/axios'
-// import shuffle from 'lodash.shuffle'
 import VButton from '@/components/VButton'
 import VQuestions from '@/components/VQuestions'
 export default {
@@ -31,6 +29,9 @@ export default {
   methods: {
     onClick () {
       this.started = true
+    },
+    updateStarted: function (event) {
+      this.started = event
     }
   }
 }
