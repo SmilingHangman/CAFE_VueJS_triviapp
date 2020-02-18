@@ -79,7 +79,6 @@ export default {
       } else {
         alert('WRONG!')
         this.$emit('changeStarted', false)
-        console.log(this.started)
       }
     }
   }
